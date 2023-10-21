@@ -1,2 +1,7 @@
 # Open Weather App
 
+Get Started 
+To test run the open weather apis to get more detailed info. Run below
+
+[![Run open weather api in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/10534128-6455a30e-0b2c-4f08-bd52-beefc83335be?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D10534128-6455a30e-0b2c-4f08-bd52-beefc83335be%26entityType%3Dcollection%26workspaceId%3D00d02920-bc18-4e4c-84c9-5b9acb067362#?env%5Bweather%20api%5D=W3sia2V5IjoiYXBpS2V5IiwidmFsdWUiOiI1MDdmMWU5NWI5ZWZmZWEwYWFiMzRlN2M3MWNmOGI2OCIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJzZWNyZXQiLCJzZXNzaW9uVmFsdWUiOiI1MDdmMWU5NWI5ZWZmZWEwYWFiMzRlN2M3MWNmOGI2OCIsInNlc3Npb25JbmRleCI6MH0seyJrZXkiOiJiYXNlVXJsIiwidmFsdWUiOiJodHRwOi8vYXBpLm9wZW53ZWF0aGVybWFwLm9yZy8iLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6Imh0dHA6Ly9hcGkub3BlbndlYXRoZXJtYXAub3JnLyIsInNlc3Npb25JbmRleCI6MX1d)
+
