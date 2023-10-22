@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:openweather_app/data/models/city.dart';
 import 'package:openweather_app/ui/components/location_search_bar.dart';
 import 'package:openweather_app/ui/components/weather_card.dart';
 import 'package:openweather_app/ui/home_page.dart';
@@ -31,16 +32,20 @@ class HomePageTestCases {
     await tester.enterText(find.byKey(const Key("search_textfield")), locations.first["name"]);
     await tester.pumpAndSettle(const Duration(milliseconds: 800));
     verify(() => mockAPIRepository.fetchLocations(locations.first["name"])).called(1);
-
   }
 
   static Future<void> fetchWeatherFromLocation(WidgetTester tester, {required ProviderContainer container}) async {
     final mockAPIRepository = container.read(mockWeatherAPIRepositoryProvider);
+    final queryLocation = locations.map((e) => Location.fromMap(e)).first;
 
     await tester.tap(find.byKey(const Key("go_search")));
     await tester.pumpAndSettle();
 
-    verify(() => mockAPIRepository.fetchLocations(locations.first["name"])).called(1);
+    verify(() => mockAPIRepository.fetchLocations(queryLocation.name)).called(1);
+    verify(() => mockAPIRepository.fetchWeatherFromAPI(
+          lat: queryLocation.lat,
+          lon: queryLocation.lon,
+        )).called(1);
 
     expect(find.byType(WeatherCard), findsOneWidget);
     expect(find.text(locations.first["name"]), findsOneWidget);
