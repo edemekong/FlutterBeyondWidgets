@@ -25,13 +25,12 @@ class WeatherAPIRepository {
 
         if (data.isNotEmpty) {
           final newWeather = Weather.fromMap(data.first);
-          return newWeather.copyWith(
-            dt: body["dt"],
-            temp: body["main"]?["temp"],
-          );
+          return newWeather.copyWith(dt: body["dt"], main: body["main"]);
         }
       }
-    } catch (_) {}
+    } catch (e) {
+      print(e);
+    }
     return null;
   }
 

@@ -1,9 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:network_image_mock/network_image_mock.dart';
 import 'package:openweather_app/data/repositories/weather_api_responsitory.dart';
 import 'test_cases.dart';
 import 'mocks/weather_api_repository.dart';
-import 'utils/test_providers.dart';
+import 'utils/test_provider.dart';
 
 void main() {
   group("Weather home page:", () {
@@ -11,9 +12,44 @@ void main() {
       weatherApiRepositoryProvider.overrideWith(mockWeatherApi),
     ];
 
-    testWidgets("home page is mounted", (tester) async {
+    testWidgets("weather home page is mounted", (tester) async {
       final container = createContainer(overrides: overrides);
-      HomePageTestCases.launchHomePage(tester, container: container);
+      HomePageTestCases.launchWeatherHomePage(tester, container: container);
+    });
+
+    testWidgets("weather search location bar is visible", (tester) async {
+      final container = createContainer(overrides: overrides);
+
+      await HomePageTestCases.launchWeatherHomePage(tester, container: container);
+      await HomePageTestCases.searchBarIsVisible(tester, container: container);
+    });
+
+    testWidgets("weather search location bar is visible", (tester) async {
+      final container = createContainer(overrides: overrides);
+
+      await HomePageTestCases.launchWeatherHomePage(tester, container: container);
+      await HomePageTestCases.searchBarIsVisible(tester, container: container);
+    });
+
+    testWidgets("search for location: (Atlanta, Geogia)", (tester) async {
+      await mockNetworkImagesFor(() async {
+        final container = createContainer(overrides: overrides);
+
+        await HomePageTestCases.launchWeatherHomePage(tester, container: container);
+        await HomePageTestCases.searchBarIsVisible(tester, container: container);
+        await HomePageTestCases.startLocationSearch(tester, container: container);
+      });
+    });
+
+    testWidgets("search for location & fetch weather: (Atlanta, Geogia)", (tester) async {
+      await mockNetworkImagesFor(() async {
+        final container = createContainer(overrides: overrides);
+
+        await HomePageTestCases.launchWeatherHomePage(tester, container: container);
+        await HomePageTestCases.searchBarIsVisible(tester, container: container);
+        await HomePageTestCases.startLocationSearch(tester, container: container);
+        await HomePageTestCases.fetchWeatherFromLocation(tester, container: container);
+      });
     });
   });
 }

@@ -15,11 +15,16 @@ class WeatherCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const radius = BorderRadius.all(Radius.circular(12));
+    final temp = weather.main?["temp"] as double;
+    final like = weather.main?["feels_like"] as double;
+    final humidity = weather.main?["humidity"] as int;
 
-    final celsius = (weather.temp - 273.15).round();
+    final celsius = (temp - 273.15).round();
+    final likeCelsius = (like - 273.15).round();
+    
     final date = DateTime.fromMillisecondsSinceEpoch(weather.dt * 1000);
     final formattedDate = DateFormat("HH:MM a - EEEE, MMMM d'", "en_US").format(date);
-    
+
     return Stack(
       clipBehavior: Clip.none,
       children: [
@@ -76,7 +81,7 @@ class WeatherCard extends StatelessWidget {
                   ),
                   const Spacer(),
                   Text(
-                    "H:12° L:26°",
+                    "H:$humidity° L:$likeCelsius°",
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontWeight: FontWeight.w500,
                           color: Theme.of(context).unselectedWidgetColor,

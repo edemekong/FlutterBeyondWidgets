@@ -5,7 +5,6 @@ import 'package:openweather_app/data/states/search_bar_state.dart';
 import 'package:openweather_app/ui/components/location_search_bar.dart';
 import 'package:openweather_app/ui/components/weather_card.dart';
 
-
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
@@ -15,7 +14,6 @@ class HomePage extends ConsumerWidget {
     final homeNotifier = ref.read(homeWeatherProvider.notifier);
     final searchBarNotifier = ref.read(searchBarStateProvider.notifier);
     final locations = ref.watch(searchBarStateProvider);
-
 
     return Scaffold(
       body: SafeArea(
@@ -27,6 +25,7 @@ class HomePage extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
+                    key: const Key("page_title"),
                     "Weather",
                     style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                           fontWeight: FontWeight.w700,
@@ -35,7 +34,8 @@ class HomePage extends ConsumerWidget {
                   ),
                   const SizedBox(height: 20 * 0.25),
                   SearchLocationBar(
-                    onSearch: searchBarNotifier.onSearchLocation,
+                    onSearch: searchBarNotifier.onQuickSearch,
+                    onSearchChanged: searchBarNotifier.onSearchLocation,
                     locations: locations,
                     onLocationSelected: homeNotifier.onSelectLocation,
                   ),
@@ -44,14 +44,25 @@ class HomePage extends ConsumerWidget {
               ),
             ),
             Expanded(
-              child: ListView.builder(
-                itemCount: weathers.length,
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                itemBuilder: (context, index) =>  Padding(
-                  padding:const EdgeInsets.only(bottom: 15),
-                  child: WeatherCard(weather: weathers[index],),
-                ),
-              ),
+              child: Builder(builder: (context) {
+                if (weathers.isEmpty) {
+                  return const Center(
+                    child: Text(
+                      "Your search weather will appear here",
+                    ),
+                  );
+                }
+                return ListView.builder(
+                  itemCount: weathers.length,
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.only(bottom: 15),
+                    child: WeatherCard(
+                      weather: weathers[index],
+                    ),
+                  ),
+                );
+              }),
             ),
           ],
         ),

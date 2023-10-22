@@ -3,13 +3,16 @@ import 'package:openweather_app/data/models/city.dart';
 
 class SearchLocationBar extends StatefulWidget {
   final void Function(String query) onSearch;
+  final void Function(String query) onSearchChanged;
   final List<Location> locations;
 
   final Function(Location) onLocationSelected;
+  
 
   const SearchLocationBar({
     Key? key,
     required this.onSearch,
+    required this.onSearchChanged,
     required this.onLocationSelected,
     required this.locations,
   }) : super(key: key);
@@ -53,7 +56,7 @@ class _SearchEmployeeBarState extends State<SearchLocationBar> {
           return const [];
         }
 
-        widget.onSearch(textEditingValue.text);
+        widget.onSearchChanged(textEditingValue.text);
 
         return widget.locations;
       },
@@ -133,18 +136,30 @@ class _SearchEmployeeBarState extends State<SearchLocationBar> {
 
           return SizedBox(
             height: 40,
-            child: TextField(
-              controller: controller,
-              focusNode: focusNode,
-              decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.search),
-                fillColor: Colors.grey.shade200,
-                filled: true,
-                contentPadding: const EdgeInsets.symmetric(horizontal: 20),
-                enabledBorder: border,
-                focusedBorder: border,
-                hintText: "Search for a city",
-              ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    key: const Key("search_textfield"),
+                    controller: controller,
+                    focusNode: focusNode,
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.search),
+                      fillColor: Colors.grey.shade200,
+                      filled: true,
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+                      enabledBorder: border,
+                      focusedBorder: border,
+                      hintText: "Search for a city",
+                    ),
+                  ),
+                ),
+                TextButton(
+                  key: const Key("go_search"),
+                  onPressed: () => widget.onSearch(controller.text),
+                  child: const Text("Search"),
+                )
+              ],
             ),
           );
         });
