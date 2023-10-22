@@ -10,7 +10,7 @@
             "type": "dart",
             "args": [
                 "--dart-define",
-                "weather_api_key=YOUR_API_KEY"
+                "weather_api_key=507f1e95b9effea0aab34e7c71cf8b68"
             ]
             
         },
