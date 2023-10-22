@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:openweather_app/data/models/city.dart';
+
 class Weather {
   final int id;
   final String main;
@@ -9,15 +11,19 @@ class Weather {
   final int dt;
   final double temp;
 
+  final Location? location;
+
 
   String get weatherIconUrl => "https://openweathermap.org/img/wn/$icon@2x.png";
-  Weather({
+  Weather( {
     required this.id,
     required this.main,
     required this.description,
     required this.icon,
     required this.dt,
     required this.temp,
+
+    this.location,
   });
 
 
@@ -30,6 +36,7 @@ class Weather {
     String? icon,
     int? dt,
     double? temp,
+    Location? location,
   }) {
     return Weather(
       id: id ?? this.id,
@@ -38,6 +45,7 @@ class Weather {
       icon: icon ?? this.icon,
       dt: dt ?? this.dt,
       temp: temp ?? this.temp,
+      location: location ?? this.location,
     );
   }
 

@@ -7,7 +7,12 @@
         {
             "name": "openweather_app",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "args": [
+                "--dart-define",
+                "weather_api_key=YOUR_API_KEY"
+            ]
+            
         },
         {
             "name": "openweather_app (test)",

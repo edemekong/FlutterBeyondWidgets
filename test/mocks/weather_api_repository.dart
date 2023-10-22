@@ -10,7 +10,7 @@ class MockWeatherAPIRepository extends Mock implements WeatherAPIRepository {}
 
 MockWeatherAPIRepository mockWeatherApi(Ref ref) {
   final mockAPIRepository = ref.read(mockWeatherAPIRepositoryProvider);
-  when(() => mockAPIRepository.fetchWeatherFromAPI(latitude: 0, longitude: 0)).thenAnswer(
+  when(() => mockAPIRepository.fetchWeatherFromAPI(lat: 0,lon: 0)).thenAnswer(
     (invocation) async => null,
   );
 

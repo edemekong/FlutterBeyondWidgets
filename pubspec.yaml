@@ -9,21 +9,24 @@ environment:
 
 
 dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+
+  flutter_riverpod: ^2.4.4
+  geocoding: ^2.1.1
+  http: ^1.1.0
+  intl: ^0.18.1
+
+dev_dependencies:
   integration_test:
     sdk: flutter
 
-  flutter:
-    sdk: flutter
-    
-  mocktail: ^1.0.1
-
-  cupertino_icons: ^1.0.2
-  flutter_riverpod: ^2.4.4
-
-dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  mocktail: ^1.0.1
   flutter_lints: ^2.0.0
 
 flutter:

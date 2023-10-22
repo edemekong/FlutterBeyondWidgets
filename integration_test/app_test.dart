@@ -3,9 +3,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:openweather_app/data/repositories/weather_api_responsitory.dart';
 
-import '../test/mocks/repositories/weather_api_repository.dart';
-import '../test/screens/home/cases.dart';
-import '../test/utils/test_provider.dart';
+import '../test/test_cases.dart';
+import '../test/mocks/weather_api_repository.dart';
+import '../test/utils/test_providers.dart';
 
 void main() {
   group("e2e App test:", () {
