@@ -21,20 +21,27 @@ class HomePageTestCases {
     expect(find.byType(Scaffold), findsOneWidget);
   }
 
-  static Future<void> searchBarIsVisible(WidgetTester tester, {required ProviderContainer container}) async {
+  static Future<void> searchBarIsVisible(WidgetTester tester) async {
     expect(find.byKey(const Key("page_title")), findsOneWidget);
     expect(find.byType(SearchLocationBar), findsOneWidget);
   }
 
-  static Future<void> startLocationSearch(WidgetTester tester, {required ProviderContainer container}) async {
+  static Future<void> startLocationSearch(WidgetTester tester) async {
+    final element = tester.element(find.byType(HomePage));
+    final container = ProviderScope.containerOf(element);
+
     final mockAPIRepository = container.read(mockWeatherAPIRepositoryProvider);
 
     await tester.enterText(find.byKey(const Key("search_textfield")), locations.first["name"]);
-    await tester.pumpAndSettle(const Duration(milliseconds: 800));
+    await tester.pumpAndSettle();
+    
     verify(() => mockAPIRepository.fetchLocations(locations.first["name"])).called(1);
   }
 
-  static Future<void> fetchWeatherFromLocation(WidgetTester tester, {required ProviderContainer container}) async {
+  static Future<void> fetchWeatherFromLocation(WidgetTester tester) async {
+    final element = tester.element(find.byType(HomePage));
+    final container = ProviderScope.containerOf(element);
+
     final mockAPIRepository = container.read(mockWeatherAPIRepositoryProvider);
     final queryLocation = locations.map((e) => Location.fromMap(e)).first;
 

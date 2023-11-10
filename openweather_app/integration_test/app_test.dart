@@ -18,10 +18,11 @@ void main() {
 
     testWidgets("search for weather", (tester) async {
       final container = createContainer(overrides: overrides);
+      
       await HomePageTestCases.launchWeatherHomePage(tester, container: container);
-      await HomePageTestCases.searchBarIsVisible(tester, container: container);
-      await HomePageTestCases.startLocationSearch(tester, container: container);
-      await HomePageTestCases.fetchWeatherFromLocation(tester, container: container);
+      await HomePageTestCases.searchBarIsVisible(tester);
+      await HomePageTestCases.startLocationSearch(tester);
+      await HomePageTestCases.fetchWeatherFromLocation(tester);
     });
   });
 }
