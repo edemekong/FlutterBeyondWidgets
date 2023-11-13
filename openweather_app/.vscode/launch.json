@@ -8,11 +8,11 @@
             "name": "openweather_app",
             "request": "launch",
             "type": "dart",
+            "flutterMode": "debug",
             "args": [
                 "--dart-define",
                 "weather_api_key=507f1e95b9effea0aab34e7c71cf8b68"
             ]
-            
         },
         {
             "name": "openweather_app (test)",

@@ -3,14 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:openweather_app/data/states/home_weather_provider.dart';
 import 'package:openweather_app/data/states/search_bar_state.dart';
 import 'package:openweather_app/ui/components/location_search_bar.dart';
-import 'package:openweather_app/ui/components/weather_card.dart';
+import 'package:openweather_app/ui/screens/home/components/weather_list.dart';
+
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final weathers = ref.watch(homeWeatherProvider);
     final homeNotifier = ref.read(homeWeatherProvider.notifier);
     final searchBarNotifier = ref.read(searchBarStateProvider.notifier);
     final locations = ref.watch(searchBarStateProvider);
@@ -43,26 +43,8 @@ class HomePage extends ConsumerWidget {
                 ],
               ),
             ),
-            Expanded(
-              child: Builder(builder: (context) {
-                if (weathers.isEmpty) {
-                  return const Center(
-                    child: Text(
-                      "Your search weather will appear here",
-                    ),
-                  );
-                }
-                return ListView.builder(
-                  itemCount: weathers.length,
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.only(bottom: 15),
-                    child: WeatherCard(
-                      weather: weathers[index],
-                    ),
-                  ),
-                );
-              }),
+           const Expanded(
+              child: WeatherList(),
             ),
           ],
         ),

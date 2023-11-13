@@ -5,7 +5,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:openweather_app/data/models/city.dart';
 import 'package:openweather_app/ui/components/location_search_bar.dart';
 import 'package:openweather_app/ui/components/weather_card.dart';
-import 'package:openweather_app/ui/home_page.dart';
+import 'package:openweather_app/ui/screens/home/home_page.dart';
 
 import 'mocks/location_data.dart';
 import 'mocks/weather_api_repository.dart';

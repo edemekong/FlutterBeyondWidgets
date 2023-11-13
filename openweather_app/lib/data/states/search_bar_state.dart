@@ -33,6 +33,7 @@ class SearchBarState extends Notifier<List<Location>> {
 
   void onQuickSearch(String query) async {
     List<Location> newLocations = await weatherAPIrepo.fetchLocations(query);
+
     
     if (newLocations.isNotEmpty) {
       final location = newLocations.first;
